@@ -35,7 +35,7 @@
           "ignoreTemplateLiterals": true,
           "ignoreComments": true
         }],
-        "operator-linebreak": [2, "after"],
+        "operator-linebreak": [2, "before"],
         "consistent-return": 0,
         "prefer-destructuring": [2, { "array": false, "object": false }, { "enforceForRenamedProperties": false }],
         "function-paren-newline": 0,

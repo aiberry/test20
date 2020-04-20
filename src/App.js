@@ -1,8 +1,9 @@
 import React from 'react';
 import Sidebar from 'react-sidebar';
-import styles from './App.module.css';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import styles from './App.module.css';
 import { loadItems } from './actions/loadItems';
 import { setItemsFilter } from './actions/setItemsFilter';
 import { setSelectedItem } from './actions/setSelectedItem';
@@ -43,10 +44,7 @@ class App extends React.Component {
         transitions={false}
         sidebar={
           <div>
-            <input
-              type="text"
-              onChange={this.inputChange}
-              className={styles.topSearch}></input>
+            <input type="text" onChange={this.inputChange}></input>
             {this.props.items.map((item) => (
               <div
                 key={item.id}
@@ -63,22 +61,30 @@ class App extends React.Component {
                 </button>
                 <p>{item.name}</p>
                 <p>{item.shortInfo}</p>
+                {item.closeDate ? (
+                  <p>{` Closed at 
+                ${item.closeDate.getMonth()}-
+                ${item.closeDate.getDate()}-
+                ${item.closeDate.getFullYear()}@
+                ${item.closeDate.getHours()}:
+                ${item.closeDate.getMinutes()}`}</p>
+                ) : (
+                  ''
+                )}
               </div>
             ))}
           </div>
         }>
-        <div key={this.props.itemDetails.id}>
-          <h2>{this.props.itemDetails.name || 'Choose one ...'}</h2>
-          <img
-            src={
-              this.props.itemDetails.pic
-                ? `https://mrsoft.by/tz20${this.props.itemDetails.pic}`
-                : 'https://clipartart.com/images/cat-and-fishbowl-clipart.png'
-            }
-            alt="pic"
-          />
-          <p>{this.props.itemDetails.bio}</p>
-        </div>
+        <h2>{this.props.itemDetails.name || 'Choose one ...'}</h2>
+        <img
+          src={
+            this.props.itemDetails.pic
+              ? `https://mrsoft.by/tz20${this.props.itemDetails.pic}`
+              : 'https://clipartart.com/images/cat-and-fishbowl-clipart.png'
+          }
+          alt="pic"
+        />
+        <p>{this.props.itemDetails.bio}</p>
       </Sidebar>
     );
   }
@@ -113,7 +119,5 @@ App.propTypes = {
   itemDetails: PropTypes.object,
   items: PropTypes.array,
   setSelected: PropTypes.func,
-  setOppositeState: PropTypes.func,
-  options: PropTypes.array,
-  tabIndex: PropTypes.string
+  setOppositeState: PropTypes.func
 };
