@@ -1,0 +1,91 @@
+.sidebar {
+  width: 20%;
+  padding: 0 4px 0 4px;
+}
+
+.sidebar input {
+  box-sizing: border-box;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 39px;
+  margin-top: 7px;
+  margin-bottom: 6px;
+  border: 6px solid #96b1bd6b;
+  background: url(https://img.icons8.com/search) no-repeat 3px;
+  background-size: 20px 20px;
+  background-color: #c7efdc;
+  padding-left: 25px;
+}
+
+.sidebarItem {
+  border: 2px solid #282c34;
+  position: relative;
+  margin: 3px 0 3px 0;
+}
+
+.sidebarItem > p {
+  margin: 10px;
+}
+
+.itemOpened {
+  background-color: #e5edf55c;
+  cursor: pointer;
+}
+
+.itemClosed {
+  background-color: darkgray;
+  color: gainsboro;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  width: 17px;
+  height: 17px;
+  line-height: 0;
+  padding: 2px;
+}
+
+.itemOpened > .closeBtn {
+  color: red;
+}
+
+.itemClosed > .closeBtn {
+  color: #0f4bd6;
+  cursor: pointer;
+}
+
+.content {
+  padding-right: 50px;
+  background-color: #eef2f77a;
+}
+
+.content img {
+  width: 320px;
+  height: 320px;
+  border-radius: 20%;
+  float: left;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.content p {
+  font-family: ubuntu;
+  font-size: 26px;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.content h2 {
+  line-height: 72px;
+  font-size: 84px;
+  text-align: center;
+  width: 60%;
+  font-weight: 100;
+  color: #434141;
+}
