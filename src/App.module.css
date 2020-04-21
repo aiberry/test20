@@ -42,7 +42,7 @@
   color: gainsboro;
 }
 
-.closeBtn {
+.stateBtn {
   position: absolute;
   top: 3px;
   right: 4px;
@@ -52,11 +52,11 @@
   padding: 2px;
 }
 
-.itemOpened > .closeBtn {
+.itemOpened > .stateBtn {
   color: red;
 }
 
-.itemClosed > .closeBtn {
+.itemClosed > .stateBtn {
   color: #0f4bd6;
   cursor: pointer;
 }

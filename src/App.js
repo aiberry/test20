@@ -12,15 +12,10 @@ import { setItemOppositeState } from './actions/setItemOppositeState';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.inputChange = this.inputChange.bind(this);
     this.showItemDetails = this.showItemDetails.bind(this);
     this.setItemState = this.setItemState.bind(this);
     this.props.getItems();
   }
-
-  inputChange = (e) => {
-    this.props.setFilter(e.target.value);
-  };
 
   showItemDetails = (isClosed, moreLink, name) => {
     if (!isClosed) {
@@ -34,8 +29,8 @@ class App extends React.Component {
   };
 
   render() {
-    const { inputChange, showItemDetails, setItemState } = this;
-    const { items, itemDetails } = this.props;
+    const { showItemDetails, setItemState } = this;
+    const { items, itemDetails, setFilter } = this.props;
     return (
       <Sidebar
         open={true}
@@ -46,7 +41,7 @@ class App extends React.Component {
         contentClassName={styles.content}
         sidebar={
           <div>
-            <input type="text" onChange={inputChange} />
+            <input type="text" onChange={(e) => setFilter(e.target.value)} />
             {items.map((item) => (
               <div
                 key={item.id}
@@ -57,13 +52,13 @@ class App extends React.Component {
                   showItemDetails(item.isClosed, item.more, item.name, e)
                 }>
                 <button
-                  className={styles.closeBtn}
+                  className={styles.stateBtn}
                   onClick={(e) => setItemState(e, item.id)}>
                   {item.isClosed ? 'R' : 'X'}
                 </button>
                 <p>{item.name}</p>
                 <p>{item.shortInfo}</p>
-                {item.closeDate ? (
+                {item.isClosed ? (
                   <p>
                     {` Closed at 
                     ${item.closeDate.getMonth()}-
