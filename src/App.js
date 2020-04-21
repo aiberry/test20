@@ -34,40 +34,44 @@ class App extends React.Component {
   };
 
   render() {
+    const { inputChange, showItemDetails, setItemState } = this;
+    const { items, itemDetails } = this.props;
     return (
       <Sidebar
-        sidebarClassName={styles.sidebar}
-        contentClassName={styles.content}
         open={true}
         docked={true}
         shadow={false}
         transitions={false}
+        sidebarClassName={styles.sidebar}
+        contentClassName={styles.content}
         sidebar={
           <div>
-            <input type="text" onChange={this.inputChange}></input>
-            {this.props.items.map((item) => (
+            <input type="text" onChange={inputChange} />
+            {items.map((item) => (
               <div
                 key={item.id}
                 className={`${styles.sidebarItem} ${
                   item.isClosed ? styles.itemClosed : styles.itemOpened
                 }`}
                 onClick={(e) =>
-                  this.showItemDetails(item.isClosed, item.more, item.name, e)
+                  showItemDetails(item.isClosed, item.more, item.name, e)
                 }>
                 <button
                   className={styles.closeBtn}
-                  onClick={(e) => this.setItemState(e, item.id)}>
+                  onClick={(e) => setItemState(e, item.id)}>
                   {item.isClosed ? 'R' : 'X'}
                 </button>
                 <p>{item.name}</p>
                 <p>{item.shortInfo}</p>
                 {item.closeDate ? (
-                  <p>{` Closed at 
-                ${item.closeDate.getMonth()}-
-                ${item.closeDate.getDate()}-
-                ${item.closeDate.getFullYear()}@
-                ${item.closeDate.getHours()}:
-                ${item.closeDate.getMinutes()}`}</p>
+                  <p>
+                    {` Closed at 
+                    ${item.closeDate.getMonth()}-
+                    ${item.closeDate.getDate()}-
+                    ${item.closeDate.getFullYear()}@
+                    ${item.closeDate.getHours()}:
+                    ${item.closeDate.getMinutes()}`}
+                  </p>
                 ) : (
                   ''
                 )}
@@ -75,16 +79,16 @@ class App extends React.Component {
             ))}
           </div>
         }>
-        <h2>{this.props.itemDetails.name || 'Choose one ...'}</h2>
+        <h2>{itemDetails.name || 'Choose one ...'}</h2>
         <img
           src={
-            this.props.itemDetails.pic
-              ? `https://mrsoft.by/tz20${this.props.itemDetails.pic}`
+            itemDetails.pic
+              ? `https://mrsoft.by/tz20${itemDetails.pic}`
               : 'https://clipartart.com/images/cat-and-fishbowl-clipart.png'
           }
           alt="pic"
         />
-        <p>{this.props.itemDetails.bio}</p>
+        <p>{itemDetails.bio}</p>
       </Sidebar>
     );
   }
